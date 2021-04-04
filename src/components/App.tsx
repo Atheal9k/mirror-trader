@@ -60,7 +60,7 @@ const App: React.FC = () => {
       )
       setLoading(false)
       setMessageLogOpen(
-        `Opened ${
+        `Submitted open order for ${
           quantityPercent ? quantityPercent * 100 : quantityPercent
         }% ${side} for ${ticker}!`
       )
@@ -92,12 +92,12 @@ const App: React.FC = () => {
       )
       setLoading(false)
       setMessageLogClose(
-        `Closed ${
+        `Submitted close order of ${
           quantityPercent ? quantityPercent * 100 : quantityPercent
         }% of Your Position for ${ticker}`
       )
       setShowMessageClose(true)
-      console.log(`Closed Position for ${ticker}`)
+      console.log(`Submitted Close Position for ${ticker}`)
     } catch (err) {
       setLoading(false)
       console.log(err)
@@ -125,8 +125,11 @@ const App: React.FC = () => {
               <label className="ui ribbon label">Choose Position:</label>
               <select
                 className="ui dropdown"
-                onChange={(e) => setSide(e.target.value)}>
-                <option value="">Select a Position</option>
+                onChange={(e) => setSide(e.target.value)}
+                required>
+                <option value="" selected disabled hidden>
+                  Select a Position
+                </option>
                 <option value="LONG">LONG</option>
                 <option value="SHORT">SHORT</option>
               </select>

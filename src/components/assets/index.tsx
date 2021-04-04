@@ -18,6 +18,21 @@ interface Props {
 const Assets: React.FC<Props> = ({ onAssetChange }) => {
   const [ticker, setTicker] = useState("")
 
+  const AssetList = [
+    {
+      tickerName: "IOTA",
+      pairId: "IOTAUSDT",
+    },
+    {
+      tickerName: "AAVE",
+      pairId: "AAVEUSDT",
+    },
+    {
+      tickerName: "ADA",
+      pairId: "ADAUSDT",
+    },
+  ]
+
   const submitAsset = (e: any) => {
     setTicker(e.target.value)
     onAssetChange(e.target.value)
@@ -32,10 +47,14 @@ const Assets: React.FC<Props> = ({ onAssetChange }) => {
         value={ticker}
         name="SelectedAsset"
         required>
-        <option value="">Select an Asset</option>
-        <option value="IOTAUSDT">IOTA</option>
-        <option value="AAVEUSDT">AAVE</option>
-        <option value="ADAUSDT">ADA</option>
+        {AssetList.map((theList: any) => (
+          <option value={theList.pairId} key={theList.tickerName}>
+            {theList.tickerName}
+          </option>
+        ))}
+        <option value="" selected disabled hidden>
+          Select an Asset
+        </option>
       </select>
     </Div>
   )

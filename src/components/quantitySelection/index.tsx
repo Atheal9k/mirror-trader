@@ -15,6 +15,93 @@ interface Props {
 }
 
 const QuantitySelection: React.FC<Props> = ({ onQuantityChange }) => {
+  const PercentageList = [
+    {
+      frontEndValue: "Select Percentage",
+      backEndValue: "0",
+    },
+    {
+      frontEndValue: "5%",
+      backEndValue: "0.05",
+    },
+    {
+      frontEndValue: "10%",
+      backEndValue: "0.1",
+    },
+    {
+      frontEndValue: "15%",
+      backEndValue: "0.15",
+    },
+    {
+      frontEndValue: "20%",
+      backEndValue: "0.2",
+    },
+    {
+      frontEndValue: "25%",
+      backEndValue: "0.25",
+    },
+    {
+      frontEndValue: "30%",
+      backEndValue: "0.3",
+    },
+    {
+      frontEndValue: "35%",
+      backEndValue: "0.35",
+    },
+    {
+      frontEndValue: "40%",
+      backEndValue: "0.4",
+    },
+    {
+      frontEndValue: "45%",
+      backEndValue: "0.45",
+    },
+    {
+      frontEndValue: "50%",
+      backEndValue: "0.5",
+    },
+    {
+      frontEndValue: "55%",
+      backEndValue: "0.55",
+    },
+    {
+      frontEndValue: "60%",
+      backEndValue: "0.6",
+    },
+    {
+      frontEndValue: "65%",
+      backEndValue: "0.65",
+    },
+    {
+      frontEndValue: "70%",
+      backEndValue: "0.7",
+    },
+    {
+      frontEndValue: "75%",
+      backEndValue: "0.75",
+    },
+    {
+      frontEndValue: "80%",
+      backEndValue: "0.80",
+    },
+    {
+      frontEndValue: "85%",
+      backEndValue: "0.85",
+    },
+    {
+      frontEndValue: "90%",
+      backEndValue: "0.9",
+    },
+    {
+      frontEndValue: "95%",
+      backEndValue: "0.95",
+    },
+    {
+      frontEndValue: "100%",
+      backEndValue: "1",
+    },
+  ]
+
   const [quantity, setQuantity] = useState<number>(0)
 
   const submitQuantity = (e: any) => {
@@ -31,27 +118,11 @@ const QuantitySelection: React.FC<Props> = ({ onQuantityChange }) => {
         name="SelectedQuantity"
         value={quantity}
         required>
-        <option value="">Select Percentage</option>
-        <option value="0.05">5%</option>
-        <option value="0.1">10%</option>
-        <option value="0.15">15%</option>
-        <option value="0.2">20%</option>
-        <option value="0.25">25%</option>
-        <option value="0.3">30%</option>
-        <option value="0.35">35%</option>
-        <option value="0.4">40%</option>
-        <option value="0.45">45%</option>
-        <option value="0.5">50%</option>
-        <option value="0.55">55%</option>
-        <option value="0.6">60%</option>
-        <option value="0.65">65%</option>
-        <option value="0.7">70%</option>
-        <option value="0.75">75%</option>
-        <option value="0.8">80%</option>
-        <option value="0.85">85%</option>
-        <option value="0.9">90%</option>
-        <option value="0.95">95%</option>
-        <option value="1">100%</option>
+        {PercentageList.map((theList: any) => (
+          <option value={theList.backEndValue} key={theList.backEndValue}>
+            {theList.frontEndValue}
+          </option>
+        ))}
       </select>
     </Div>
   )
