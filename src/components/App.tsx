@@ -1,14 +1,14 @@
 import styled from "styled-components"
 import React, { useState, useEffect } from "react"
 import binanceTrader from "../apis/binanceTrader"
-import coingecko from "../apis/coingecko"
 import QuantitySelection from "./quantitySelection"
 import Assets from "./assets"
-import axios from "axios"
+import Spinner from "./spinner"
 
 const Div = styled.div`
-  margin-top: 10rem;
+  margin-top: 2rem;
   margin-left: 5rem;
+  padding: 2.5rem;
   text-align: center;
   line-height: 3rem;
 `
@@ -29,6 +29,11 @@ const App: React.FC = () => {
   const [ticker, setTicker] = useState("")
   const [quantityPercent, setQuantityPercent] = useState<number>()
   const [side, setSide] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [messageLogOpen, setMessageLogOpen] = useState("")
+  const [messageLogClose, setMessageLogClose] = useState("")
+  const [showMessageOpen, setShowMessageOpen] = useState(false)
+  const [showMessageClose, setShowMessageClose] = useState(false)
 
   const config = {
     headers: {
@@ -38,31 +43,67 @@ const App: React.FC = () => {
 
   const openPosition = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await binanceTrader.post(
-      "/openPosition",
-      {
-        account: "Manoj",
-        asset: ticker,
-        positionSide: side,
-        positionAmount: quantityPercent,
-      },
-      config
-    )
-    console.log(`Opened Position for ${ticker}`)
+    try {
+      setShowMessageOpen(false)
+      setMessageLogOpen("")
+      setMessageLogClose("")
+      setLoading(true)
+      let log = await binanceTrader.post(
+        "/openPosition",
+        {
+          account: "Manoj",
+          asset: ticker,
+          positionSide: side,
+          positionAmount: quantityPercent,
+        },
+        config
+      )
+      setLoading(false)
+      setMessageLogOpen(
+        `Opened ${
+          quantityPercent ? quantityPercent * 100 : quantityPercent
+        }% ${side} for ${ticker}!`
+      )
+      setShowMessageOpen(true)
+      console.log(`Opened Position for ${ticker}`)
+    } catch (err) {
+      setLoading(false)
+      console.log(err)
+      setMessageLogOpen("Position was not opened")
+      setShowMessageOpen(true)
+    }
   }
 
   const closePosition = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await binanceTrader.post(
-      "/closePosition",
-      {
-        account: "Manoj",
-        asset: ticker,
-        positionAmount: quantityPercent,
-      },
-      config
-    )
-    console.log(`Closed Position for ${ticker}`)
+    try {
+      setShowMessageClose(false)
+      setMessageLogClose("")
+      setMessageLogOpen("")
+      setLoading(true)
+      await binanceTrader.post(
+        "/closePosition",
+        {
+          account: "Manoj",
+          asset: ticker,
+          positionAmount: quantityPercent,
+        },
+        config
+      )
+      setLoading(false)
+      setMessageLogClose(
+        `Closed ${
+          quantityPercent ? quantityPercent * 100 : quantityPercent
+        }% of Your Position for ${ticker}`
+      )
+      setShowMessageClose(true)
+      console.log(`Closed Position for ${ticker}`)
+    } catch (err) {
+      setLoading(false)
+      console.log(err)
+      setMessageLogClose("Position was not closed")
+      setShowMessageClose(true)
+    }
   }
 
   const getAsset = (assetSelected: string) => {
@@ -77,6 +118,7 @@ const App: React.FC = () => {
     <Div className="ui container">
       <h1>The Manual Money Printer</h1>
       <div className="ui segment">
+        <h3>Open A Position</h3>
         <form onSubmit={openPosition}>
           <div>
             <StyledPosition>
@@ -91,25 +133,45 @@ const App: React.FC = () => {
             </StyledPosition>
             <Assets onAssetChange={getAsset} />
             <QuantitySelection onQuantityChange={getQuantity} />
-
-            <ButtonDiv>
-              <button className="ui green button">Open Position</button>
-            </ButtonDiv>
+            {loading ? (
+              <Spinner />
+            ) : (
+              <ButtonDiv>
+                <button className="ui green button">Open Position</button>
+              </ButtonDiv>
+            )}
           </div>
         </form>
+        {showMessageOpen ? (
+          <div className="ui positive message">
+            <div className="header">Success!</div>
+            <p>{messageLogOpen}</p>
+          </div>
+        ) : null}
       </div>
 
       <div className="ui segment">
+        <h3>Close A Position</h3>
         <form onSubmit={closePosition}>
           <div>
             <Assets onAssetChange={getAsset} />
             <QuantitySelection onQuantityChange={getQuantity} />
           </div>
 
-          <ButtonDiv>
-            <button className="ui red button">Close Position</button>
-          </ButtonDiv>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <ButtonDiv>
+              <button className="ui red button">Close Position</button>
+            </ButtonDiv>
+          )}
         </form>
+        {showMessageClose ? (
+          <div className="ui positive message">
+            <div className="header">Success!</div>
+            <p>{messageLogClose}</p>
+          </div>
+        ) : null}
       </div>
     </Div>
   )

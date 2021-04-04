@@ -30,7 +30,8 @@ const Assets: React.FC<Props> = ({ onAssetChange }) => {
         className="ui dropdown"
         onChange={submitAsset}
         value={ticker}
-        name="SelectedAsset">
+        name="SelectedAsset"
+        required>
         <option value="">Select an Asset</option>
         <option value="IOTAUSDT">IOTA</option>
         <option value="AAVEUSDT">AAVE</option>

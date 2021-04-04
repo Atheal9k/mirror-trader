@@ -24,12 +24,13 @@ const QuantitySelection: React.FC<Props> = ({ onQuantityChange }) => {
 
   return (
     <Div>
-      <label className="ui ribbon label">Predifined Quantity Amount:</label>
+      <label className="ui ribbon label">Quantity Percent:</label>
       <select
         className="ui dropdown"
         onChange={submitQuantity}
         name="SelectedQuantity"
-        value={quantity}>
+        value={quantity}
+        required>
         <option value="">Select Percentage</option>
         <option value="0.05">5%</option>
         <option value="0.1">10%</option>
