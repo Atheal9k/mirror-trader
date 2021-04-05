@@ -14,6 +14,11 @@ interface Props {
   onQuantityChange: (quantitySelected: number) => void
 }
 
+interface ListObject {
+  frontEndValue?: string
+  backEndValue?: string
+}
+
 const QuantitySelection: React.FC<Props> = ({ onQuantityChange }) => {
   const PercentageList = [
     {
@@ -118,7 +123,7 @@ const QuantitySelection: React.FC<Props> = ({ onQuantityChange }) => {
         name="SelectedQuantity"
         value={quantity}
         required>
-        {PercentageList.map((theList: any) => (
+        {PercentageList.map((theList: ListObject) => (
           <option value={theList.backEndValue} key={theList.backEndValue}>
             {theList.frontEndValue}
           </option>

@@ -15,6 +15,11 @@ interface Props {
   onAssetChange: (assetSelected: string) => void
 }
 
+interface ListObject {
+  tickerName?: string
+  pairId?: string
+}
+
 const Assets: React.FC<Props> = ({ onAssetChange }) => {
   const [ticker, setTicker] = useState("")
 
@@ -22,6 +27,10 @@ const Assets: React.FC<Props> = ({ onAssetChange }) => {
     {
       tickerName: "IOTA",
       pairId: "IOTAUSDT",
+    },
+    {
+      tickerName: "ADA",
+      pairId: "ADAUSDT",
     },
     {
       tickerName: "AAVE",
@@ -71,7 +80,7 @@ const Assets: React.FC<Props> = ({ onAssetChange }) => {
         value={ticker}
         name="SelectedAsset"
         required>
-        {AssetList.map((theList: any) => (
+        {AssetList.map((theList: ListObject) => (
           <option value={theList.pairId} key={theList.tickerName}>
             {theList.tickerName}
           </option>

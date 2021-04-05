@@ -44,6 +44,7 @@ const App: React.FC = () => {
     e.preventDefault()
     try {
       setShowMessageOpen(false)
+      setShowMessageClose(false)
       setMessageLogOpen("")
       setMessageLogClose("")
       setLoading(true)
@@ -76,6 +77,7 @@ const App: React.FC = () => {
   const closePosition = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
+      setShowMessageOpen(false)
       setShowMessageClose(false)
       setMessageLogClose("")
       setMessageLogOpen("")
@@ -150,7 +152,9 @@ const App: React.FC = () => {
         </form>
         {showMessageOpen ? (
           <div className="ui positive message">
-            <div className="header">Success!</div>
+            <div className="header">
+              Submitted... Please double check on Binance
+            </div>
             <p>{messageLogOpen}</p>
           </div>
         ) : null}
@@ -176,7 +180,9 @@ const App: React.FC = () => {
         </form>
         {showMessageClose ? (
           <div className="ui positive message">
-            <div className="header">Success!</div>
+            <div className="header">
+              Submitted... Please double check on Binance
+            </div>
             <p>{messageLogClose}</p>
           </div>
         ) : null}
