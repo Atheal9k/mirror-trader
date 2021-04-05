@@ -17,7 +17,7 @@ interface Props {
 const QuantitySelection: React.FC<Props> = ({ onQuantityChange }) => {
   const PercentageList = [
     {
-      frontEndValue: "Select Percentage",
+      frontEndValue: "Select Percent",
       backEndValue: "0",
     },
     {
@@ -113,7 +113,7 @@ const QuantitySelection: React.FC<Props> = ({ onQuantityChange }) => {
     <Div>
       <label className="ui ribbon label">Quantity Percent:</label>
       <select
-        className="ui dropdown"
+        className="ui compact selection dropdown"
         onChange={submitQuantity}
         name="SelectedQuantity"
         value={quantity}

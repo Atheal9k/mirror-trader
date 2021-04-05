@@ -28,8 +28,32 @@ const Assets: React.FC<Props> = ({ onAssetChange }) => {
       pairId: "AAVEUSDT",
     },
     {
-      tickerName: "ADA",
-      pairId: "ADAUSDT",
+      tickerName: "LINK",
+      pairId: "LINKUSDT",
+    },
+    {
+      tickerName: "LRC",
+      pairId: "LRCUSDT",
+    },
+    {
+      tickerName: "TRX",
+      pairId: "TRXUSDT",
+    },
+    {
+      tickerName: "THETA",
+      pairId: "THETAUSDT",
+    },
+    {
+      tickerName: "1INCH",
+      pairId: "1INCHUSDT",
+    },
+    {
+      tickerName: "XLM",
+      pairId: "XLMUSDT",
+    },
+    {
+      tickerName: "VET",
+      pairId: "VETUSDT",
     },
   ]
 
@@ -42,7 +66,7 @@ const Assets: React.FC<Props> = ({ onAssetChange }) => {
     <Div>
       <label className="ui ribbon label">Choose Asset:</label>
       <select
-        className="ui dropdown"
+        className="ui compact selection dropdown"
         onChange={submitAsset}
         value={ticker}
         name="SelectedAsset"

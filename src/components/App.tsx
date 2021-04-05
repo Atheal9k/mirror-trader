@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 import binanceTrader from "../apis/binanceTrader"
 import QuantitySelection from "./quantitySelection"
 import Assets from "./assets"
-import Spinner from "./spinner"
 
 const Div = styled.div`
   margin-top: 2rem;
@@ -124,20 +123,24 @@ const App: React.FC = () => {
             <StyledPosition>
               <label className="ui ribbon label">Choose Position:</label>
               <select
-                className="ui dropdown"
+                className="ui compact selection dropdown"
                 onChange={(e) => setSide(e.target.value)}
                 required>
                 <option value="" selected disabled hidden>
                   Select a Position
                 </option>
-                <option value="LONG">LONG</option>
-                <option value="SHORT">SHORT</option>
+                <option value="LONG">Long</option>
+                <option value="SHORT">Short</option>
               </select>
             </StyledPosition>
             <Assets onAssetChange={getAsset} />
             <QuantitySelection onQuantityChange={getQuantity} />
             {loading ? (
-              <Spinner />
+              <ButtonDiv>
+                <button className="ui green loading button">
+                  Submitting...
+                </button>
+              </ButtonDiv>
             ) : (
               <ButtonDiv>
                 <button className="ui green button">Open Position</button>
@@ -162,7 +165,9 @@ const App: React.FC = () => {
           </div>
 
           {loading ? (
-            <Spinner />
+            <ButtonDiv>
+              <button className="ui red loading button">Submitting...</button>
+            </ButtonDiv>
           ) : (
             <ButtonDiv>
               <button className="ui red button">Close Position</button>
