@@ -93,7 +93,7 @@ const App: React.FC = () => {
       setMessageLogClose(
         `Submitted close order of ${
           quantityPercent ? quantityPercent * 100 : quantityPercent
-        }% of Your Position for ${ticker}`
+        }% of your position for ${ticker}`
       )
       setShowMessageClose(true)
       console.log(`Submitted Close Position for ${ticker}`)
@@ -117,7 +117,7 @@ const App: React.FC = () => {
     <Div className="ui container">
       <h1>The Manual Money Printer</h1>
       <div className="ui segment">
-        <h3>Open A Position</h3>
+        <h3 className="ui green top attached header">Open Your Position</h3>
         <form onSubmit={openPosition}>
           <div>
             <StyledPosition>
@@ -157,7 +157,7 @@ const App: React.FC = () => {
       </div>
 
       <div className="ui segment">
-        <h3>Close A Position</h3>
+        <h3 className="ui red top attached header">Close Your Position</h3>
         <form onSubmit={closePosition}>
           <div>
             <Assets onAssetChange={getAsset} />
