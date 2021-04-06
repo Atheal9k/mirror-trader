@@ -41,7 +41,6 @@ const App: React.FC = () => {
   }
 
   const openPosition = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
     try {
       setShowMessageOpen(false)
       setShowMessageClose(false)
@@ -72,10 +71,11 @@ const App: React.FC = () => {
       setMessageLogOpen("Position was not opened")
       setShowMessageOpen(true)
     }
+    //setQuantityPercent(undefined)
+    //setTicker("")
   }
 
   const closePosition = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
     try {
       setShowMessageOpen(false)
       setShowMessageClose(false)
@@ -105,6 +105,8 @@ const App: React.FC = () => {
       setMessageLogClose("Position was not closed")
       setShowMessageClose(true)
     }
+    //setQuantityPercent(undefined)
+    //setTicker("")
   }
 
   const getAsset = (assetSelected: string) => {
