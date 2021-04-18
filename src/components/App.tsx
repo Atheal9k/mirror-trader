@@ -2,7 +2,10 @@ import styled from "styled-components"
 import React, { useState, useEffect } from "react"
 import binanceTrader from "../apis/binanceTrader"
 import QuantitySelection from "./quantitySelection"
+import QuantityInput from "./quantityInput"
 import Assets from "./assets"
+import AssetsClose from "./assetsClose"
+import { GlobalStyles } from "./globalStyles"
 
 const Div = styled.div`
   margin-top: 2rem;
@@ -26,7 +29,9 @@ const ButtonDiv = styled.div`
 
 const App: React.FC = () => {
   const [ticker, setTicker] = useState("")
+  const [assetClose, setAssetClose] = useState("")
   const [quantityPercent, setQuantityPercent] = useState<number>()
+  const [hardQuantity, setHardQuantity] = useState<number>()
   const [side, setSide] = useState("")
   const [loading, setLoading] = useState(false)
   const [messageLogOpen, setMessageLogOpen] = useState("")
@@ -41,6 +46,7 @@ const App: React.FC = () => {
   }
 
   const openPosition = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     try {
       setShowMessageOpen(false)
       setShowMessageClose(false)
@@ -53,15 +59,15 @@ const App: React.FC = () => {
           account: "Manoj",
           asset: ticker,
           positionSide: side,
-          positionAmount: quantityPercent,
+          positionAmount: hardQuantity,
         },
         config
       )
       setLoading(false)
       setMessageLogOpen(
-        `Submitted open order for ${
-          quantityPercent ? quantityPercent * 100 : quantityPercent
-        }% ${side} for ${ticker}!`
+        `Submitted open order for $${
+          hardQuantity ? hardQuantity : hardQuantity
+        } ${side} on ${ticker}!`
       )
       setShowMessageOpen(true)
       console.log(`Opened Position for ${ticker}`)
@@ -76,6 +82,7 @@ const App: React.FC = () => {
   }
 
   const closePosition = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     try {
       setShowMessageOpen(false)
       setShowMessageClose(false)
@@ -86,7 +93,7 @@ const App: React.FC = () => {
         "/closePosition",
         {
           account: "Manoj",
-          asset: ticker,
+          asset: assetClose,
           positionAmount: quantityPercent,
         },
         config
@@ -95,7 +102,7 @@ const App: React.FC = () => {
       setMessageLogClose(
         `Submitted close order of ${
           quantityPercent ? quantityPercent * 100 : quantityPercent
-        }% of your position for ${ticker}`
+        }% of your position for ${assetClose}`
       )
       setShowMessageClose(true)
       console.log(`Submitted Close Position for ${ticker}`)
@@ -113,15 +120,27 @@ const App: React.FC = () => {
     setTicker(assetSelected)
   }
 
+  const getAssetClose = (assetSelectedClose: string) => {
+    setAssetClose(assetSelectedClose)
+  }
+
+  const getHardQuantity = (hardQuantityAmount: number) => {
+    setHardQuantity(hardQuantityAmount)
+  }
+
   const getQuantity = (quantitySelected: number) => {
     setQuantityPercent(quantitySelected)
   }
 
   return (
     <Div className="ui container">
-      <h1>The Manual Money Printer</h1>
-      <div className="ui segment">
-        <h3 className="ui green top attached header">Open Your Position</h3>
+      <GlobalStyles />
+      <div className="ui segment" style={{ backgroundColor: "#42628a" }}>
+        <h3
+          className="ui black top attached header"
+          style={{ backgroundColor: "#42628a", border: "none" }}>
+          Open Your Position
+        </h3>
         <form onSubmit={openPosition}>
           <div>
             <StyledPosition>
@@ -129,7 +148,8 @@ const App: React.FC = () => {
               <select
                 className="ui compact selection dropdown"
                 onChange={(e) => setSide(e.target.value)}
-                required>
+                required
+                style={{ backgroundColor: "#0b294d", color: "white" }}>
                 <option value="" selected disabled hidden>
                   Select a Position
                 </option>
@@ -138,7 +158,7 @@ const App: React.FC = () => {
               </select>
             </StyledPosition>
             <Assets onAssetChange={getAsset} />
-            <QuantitySelection onQuantityChange={getQuantity} />
+            <QuantityInput onQuantityChange={getHardQuantity} />
             {loading ? (
               <ButtonDiv>
                 <button className="ui green loading button">
@@ -162,11 +182,15 @@ const App: React.FC = () => {
         ) : null}
       </div>
 
-      <div className="ui segment">
-        <h3 className="ui red top attached header">Close Your Position</h3>
+      <div className="ui segment" style={{ backgroundColor: "#42628a" }}>
+        <h3
+          className="ui black top attached header"
+          style={{ backgroundColor: "#42628a", border: "none" }}>
+          Close Your Position
+        </h3>
         <form onSubmit={closePosition}>
           <div>
-            <Assets onAssetChange={getAsset} />
+            <AssetsClose onAssetChange={getAssetClose} />
             <QuantitySelection onQuantityChange={getQuantity} />
           </div>
 

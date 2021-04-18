@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import coingecko from "../../apis/coingecko"
 
 const Div = styled.div`
   display: flex;
@@ -12,7 +11,7 @@ const Div = styled.div`
 `
 
 interface Props {
-  onAssetChange: (assetSelected: string) => void
+  onAssetChange: (assetSelectedClose: string) => void
 }
 
 interface ListObject {
@@ -21,7 +20,7 @@ interface ListObject {
   color?: any
 }
 
-const Assets: React.FC<Props> = ({ onAssetChange }) => {
+const AssetsClose: React.FC<Props> = ({ onAssetChange }) => {
   const [ticker, setTicker] = useState("")
 
   const AssetList = [
@@ -173,4 +172,4 @@ const Assets: React.FC<Props> = ({ onAssetChange }) => {
   )
 }
 
-export default Assets
+export default AssetsClose

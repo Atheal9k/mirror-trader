@@ -122,7 +122,8 @@ const QuantitySelection: React.FC<Props> = ({ onQuantityChange }) => {
         onChange={submitQuantity}
         name="SelectedQuantity"
         value={quantity}
-        required>
+        required
+        style={{ backgroundColor: "#0b294d", color: "white" }}>
         {PercentageList.map((theList: ListObject) => (
           <option value={theList.backEndValue} key={theList.backEndValue}>
             {theList.frontEndValue}
