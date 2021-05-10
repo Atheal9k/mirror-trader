@@ -45,36 +45,36 @@ const Assets: React.FC<Props> = ({ onAssetChange }) => {
       pairId: "IOTAUSDT",
       color: "#339933",
     },
-    {
-      tickerName: "BNB",
-      pairId: "BNBUSDT",
-      color: "#339933",
-    },
-    {
-      tickerName: "UNI",
-      pairId: "UNIUSDT",
-      color: "#339933",
-    },
-    {
-      tickerName: "ETH",
-      pairId: "ETHUSDT",
-      color: "#ff9900",
-    },
+    // {
+    //   tickerName: "BNB",
+    //   pairId: "BNBUSDT",
+    //   color: "#339933",
+    // },
+    // {
+    //   tickerName: "UNI",
+    //   pairId: "UNIUSDT",
+    //   color: "#339933",
+    // },
+    // {
+    //   tickerName: "ETH",
+    //   pairId: "ETHUSDT",
+    //   color: "#ff9900",
+    // },
     {
       tickerName: "1INCH",
       pairId: "1INCHUSDT",
       color: "#ff9900",
     },
-    {
-      tickerName: "BTC",
-      pairId: "BTCUSDT",
-      color: "#ff9900",
-    },
-    {
-      tickerName: "MKR",
-      pairId: "MKRUSDT",
-      color: "#ff9900",
-    },
+    // {
+    //   tickerName: "BTC",
+    //   pairId: "BTCUSDT",
+    //   color: "#ff9900",
+    // },
+    // {
+    //   tickerName: "MKR",
+    //   pairId: "MKRUSDT",
+    //   color: "#ff9900",
+    // },
     {
       tickerName: "RSR",
       pairId: "RSRUSDT",
@@ -90,54 +90,59 @@ const Assets: React.FC<Props> = ({ onAssetChange }) => {
       pairId: "VETUSDT",
       color: "white",
     },
-    {
-      tickerName: "SUSHI",
-      pairId: "SUSHIUSDT",
-      color: "#3399ff",
-    },
-    {
-      tickerName: "SAND",
-      pairId: "SANDUSDT",
-      color: "#3399ff",
-    },
-    {
-      tickerName: "LRC",
-      pairId: "LRCUSDT",
-      color: "#3399ff",
-    },
+    // {
+    //   tickerName: "SUSHI",
+    //   pairId: "SUSHIUSDT",
+    //   color: "#3399ff",
+    // },
+    // {
+    //   tickerName: "SAND",
+    //   pairId: "SANDUSDT",
+    //   color: "#3399ff",
+    // },
+    // {
+    //   tickerName: "LRC",
+    //   pairId: "LRCUSDT",
+    //   color: "#3399ff",
+    // },
     {
       tickerName: "TRX",
       pairId: "TRXUSDT",
       color: "#3399ff",
     },
-    {
-      tickerName: "FIL",
-      pairId: "FILUSDT",
-      color: "#9933ff",
-    },
-    {
-      tickerName: "DOT",
-      pairId: "DOTUSDT",
-      color: "#9933ff",
-    },
-    {
-      tickerName: "XLM",
-      pairId: "XLMUSDT",
-      color: "#9933ff",
-    },
+    // {
+    //   tickerName: "FIL",
+    //   pairId: "FILUSDT",
+    //   color: "#9933ff",
+    // },
+    // {
+    //   tickerName: "DOT",
+    //   pairId: "DOTUSDT",
+    //   color: "#9933ff",
+    // },
+    // {
+    //   tickerName: "XLM",
+    //   pairId: "XLMUSDT",
+    //   color: "#9933ff",
+    // },
     {
       tickerName: "LUNA",
       pairId: "LUNAUSDT",
       color: "#9933ff",
     },
+    // {
+    //   tickerName: "LINK",
+    //   pairId: "LINKUSDT",
+    //   color: "#9933ff",
+    // },
+    // {
+    //   tickerName: "LTC",
+    //   pairId: "LTCUSDT",
+    //   color: "#9933ff",
+    // },
     {
-      tickerName: "LINK",
-      pairId: "LINKUSDT",
-      color: "#9933ff",
-    },
-    {
-      tickerName: "LTC",
-      pairId: "LTCUSDT",
+      tickerName: "DOGE",
+      pairId: "DOGEUSDT",
       color: "#9933ff",
     },
   ]
